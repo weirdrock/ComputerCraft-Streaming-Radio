@@ -55,7 +55,7 @@ Example:
 streamRadio.lua https://ice4.somafm.com/groovesalad-128-mp3
 ```
 
-This should play the Groovesalad radio station on the CC:Tweaked computer's in-game speakers.
+This should play the SOMA.fm Groove Salad radio station on the CC:Tweaked computer's in-game speakers.
 
 ---
 
