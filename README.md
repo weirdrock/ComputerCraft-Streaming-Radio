@@ -75,7 +75,7 @@ This should play the Groovesalad radio station on the CC:Tweaked computer's in-g
 ---
 
 ## Credits:
-- Designed by Liquidthex (https://liquidthex.com) and ChatGPT o1-preview
+Designed by Liquidthex (https://liquidthex.com) and ChatGPT o1-preview
 
 ## License
 
