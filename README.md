@@ -10,7 +10,7 @@ This multi-threaded Python daemon opens a WebSocket server that transcodes audio
 You must run this on a system that is accessible from the in-game computer.
 
 Note: This script requires **ffmpeg 5.1 or later** with dfpwm support. Ubuntu packages are often out of date.
-Additionally, ffmpeg has an issue with DNS name resolution--On Ubuntu 22.04 you'll need to install and start the package 'nscd' to fix this.
+Additionally, ffmpeg has an issue with DNS name resolution (you will get segmentation faults when trying to use a streaming input). On Ubuntu 22.04 you'll need to install and start the package 'nscd' to fix this.
 ```
 sudo apt-get install nscd
 sudo systemctl start nscd.service
