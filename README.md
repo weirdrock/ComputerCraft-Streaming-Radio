@@ -1,9 +1,11 @@
 # ComputerCraft-Streaming-Radio
+
 The goal of this project is to enable CC:Tweaked computers in Minecraft to play internet streaming radio stations via in-game speakers.
 
 The project is comprised of two parts:
 
 ## **radioTranscodeServer.py**:
+
 This multi-threaded Python daemon opens a WebSocket server that transcodes audio from a streaming radio station to DFPWM format for CC:Tweaked computers.
 You must run this on a system that is accessible from the in-game computer.
 
@@ -15,6 +17,7 @@ sudo systemctl start nscd.service
 ```
 
 ## **streamRadio.lua**:
+
 This Lua script connects to the WebSocket server and plays the transcoded audio on the CC:Tweaked computer's in-game speakers.
 
 Note: If you are running the daemon on the same network as the minecraft server you will need to alter the computercraft server config file `config/computercraft-server.toml`:
@@ -26,7 +29,24 @@ This script will default to try to connect to the radioTranscodeServer.py on loc
 streamRadio.lua https://ice4.somafm.com/groovesalad-128-mp3 1.1.1.1:8765
 ```
 
+---
+
+## Installation:
+
+### On Transcoding Server:
+1. Install Python 3
+2. Install FFMPEG 5.1 or later
+3. Install Name service caching daemon (nscd)
+4. Clone this repository
+
+### On Minecraft server (with CC:Tweaked):
+1. Grab the streamRadio.lua script to a computer:
+    - ```wget https://raw.githubusercontent.com/liquidthex/ComputerCraft-Streaming-Radio/refs/heads/main/streamRadio.lua streamRadio.lua```
+
+---
+
 ## Usage:
+
 1. Run the radioTranscodeServer.py script to start the WebSocket server.
 2. Run the streamRadio.lua script on a CC:Tweaked computer and provide the stream (direct MP3) URL as an argument.
 
@@ -36,6 +56,23 @@ streamRadio.lua https://ice4.somafm.com/groovesalad-128-mp3
 ```
 
 This should play the Groovesalad radio station on the CC:Tweaked computer's in-game speakers.
+
+---
+
+## Requirements:
+
+### On Transcoding Server:
+- FFMPEG 5.1 or later
+- Python 3
+- nscd Name service caching daemon
+- Ability for minecraft server to reach TCP port 8765
+### On Minecraft server:
+- CC:Tweaked
+- Websockets enabled
+- Optionally: Tweak computercraft server config to enable local network access.
+- Computer with speaker attached to any side
+
+---
 
 ## License
 
