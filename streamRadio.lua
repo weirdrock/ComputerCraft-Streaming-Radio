@@ -36,10 +36,10 @@ ws.send(textutils.serializeJSON(request))
 print("Connected to the streaming server.")
 
 local audioBuffer = {}
-local BUFFER_SIZE = 10  -- Adjust buffer size as needed
+local BUFFER_SIZE = 20  -- Adjust buffer size as needed
 
 -- Create a DFPWM decoder
-local decoder = dfpwm.make_decoder()
+-- local decoder = dfpwm.make_decoder()
 
 -- Variable to control the main loop
 local running = true
@@ -49,22 +49,15 @@ local function playAudio()
     while running do
         if #audioBuffer > 0 then
             local data = table.remove(audioBuffer, 1)
-            -- Decode the DFPWM data
-            local success, decoded_or_error = pcall(decoder, data)
-            if success then
-                local decoded = decoded_or_error
-                -- Play the decoded audio
-                local play_success, play_err = pcall(function()
-                    while not speaker.playAudio(decoded) do
+            -- Decode the PCM data
+            local play_success, play_err = pcall(function()
+                    while not speaker.playAudio(data) do
                         os.pullEvent("speaker_audio_empty")
                     end
                 end)
                 if not play_success then
                     print("Error playing audio:", play_err)
                 end
-            else
-                print("Error decoding audio:", decoded_or_error)
-            end
         else
             os.sleep(0.05)
         end
